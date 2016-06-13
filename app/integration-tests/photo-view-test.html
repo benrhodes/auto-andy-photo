@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo View Test</title>
+
+    <style>
+        @import "../styles/main.css";
+    </style>
+
+</head>
+
+
+
+<body>
+
+<div id="canvas"></div>
+
+<script type="text/javascript" src="../scripts/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/handlebars.runtime.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/underscore-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/backbone-min.js"></script>
+<script type="text/javascript" src="../scripts/templates.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_photo/photo-view.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        var photoView = new NoCircleNo.PhotoView();
+
+        photoView.setViewHeight(window.innerHeight);
+
+        $("#canvas").append(photoView.render().el);
+
+        $(window).resize(function() {
+            photoView.setViewHeight(window.innerHeight);
+        });
+
+    });
+</script>
+</body>
+</html>

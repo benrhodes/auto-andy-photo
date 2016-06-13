@@ -1,0 +1,67 @@
+body, html {
+   margin: 0;
+   padding: 0;
+   background-color: #DDDDDD;
+   font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+   font-family: 'Sniglet', cursive;
+   font-size: 24;
+   margin-top: 0;
+   text-shadow: 2px 4px 1px #c2c2c2;
+   filter: dropshadow(color=#c2c2c2, offx=2, offy=4);
+}
+
+#shared_container {
+   padding: 20px;
+   text-align: center;
+}
+
+#shared_container img {
+   border: 5px solid #AAAAAA;
+   -webkit-box-shadow: 0px 5px 6px 5px rgba(0, 0, 0, .4);
+   box-shadow: 0px 5px 6px 5px rgba(0, 0, 0, .4);
+   max-width: 1280px;
+}
+
+a {
+   font-size: 24px;
+   color: #33aaff;
+   text-decoration: none;
+   display: block;
+   margin: 10px;
+   padding: 6px;
+   text-shadow: 1px 1px 1px #999999;
+   filter: dropshadow(color=#999999, offx=1, offy=1);
+}
+
+a:hover {
+   -webkit-border-radius: 12px 12px 12px 12px;
+   border-radius: 12px 12px 12px 12px;
+   background-color: rgba(255, 255, 255, .8);
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1240px) {
+   #shared_container img {
+      max-width: 1024px;
+   }
+}
+
+@media only screen and (max-width: 747px) {
+   #shared_container img {
+      max-width: 320px;
+   }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 960px) {
+   #shared_container img {
+      max-width: 767px;
+   }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 810px) {
+   #shared_container img {
+      max-width: 480px;
+   }
+}

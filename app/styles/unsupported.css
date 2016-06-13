@@ -1,0 +1,76 @@
+body, html {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   height: auto;
+   overflow: auto;
+   font-family: 'Open Sans', sans-serif;
+}
+
+#app_container {
+   display: block;
+   position: static;
+   margin: 40px auto 0 auto;
+   width: 768px;
+   height: auto;
+}
+
+h1 {
+   display: block;
+   margin: 0;
+   font-size: 52px;
+}
+
+p {
+   font-family: 'Kavoon', cursive;
+   color: #474246;
+   font-size: 24px;
+}
+
+p span {
+   color: #cc2540;
+}
+
+#app_info {
+   padding: 8px;
+   font-size: 12px;
+   background-color: #DDDDDD;
+   border-radius: 8px;
+}
+
+#app_info a {
+   text-decoration: none;
+   color: #0e76d0;
+}
+
+#video_frame {
+   width: 768px;
+   height: 432px;
+   border: 2px solid #7f7c7e;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+   #app_container {
+      width: 480px;
+   }
+   h1 {
+      font-size: 40px;
+   }
+   #video_frame {
+      width: 480px;
+      height: 270px;
+   }
+}
+
+@media only screen and (max-width: 480px) {
+   #app_container {
+      width: 380px;
+   }
+   h1 {
+      font-size: 32px;
+   }
+   #video_frame {
+      width: 380px;
+      height: 214px;
+   }
+}

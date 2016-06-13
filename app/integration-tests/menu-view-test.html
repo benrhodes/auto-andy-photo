@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo View Test</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
+
+    <style>
+        @import "../styles/main.css";
+    </style>
+
+</head>
+
+
+
+<body>
+
+<div id="menu"></div>
+
+<script type="text/javascript" src="../scripts/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/handlebars.runtime.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/underscore-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/backbone-min.js"></script>
+<script type="text/javascript" src="../scripts/templates.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_photo/menu-view.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        var menuView = new NoCircleNo.MenuView();
+
+        $("#menu").append(menuView.render().el);
+
+        setTimeout(function() {
+            menuView.setFocusedAndy({});
+
+            setTimeout(function() {
+                menuView.setFocusedAndy();
+            }, 4000);
+        }, 2000);
+
+    });
+</script>
+</body>
+</html>

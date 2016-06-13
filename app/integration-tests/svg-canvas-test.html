@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG Canvas Js Tests</title>
+
+    <style type="text/css">
+
+        #svg_canvas {
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<textarea id="sample"></textarea>
+
+<canvas id="canvasId" width="1000px" height="700px"></canvas>
+
+<div id="svg_canvas">
+</div>
+
+<script type="text/javascript" src="../scripts/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/handlebars.runtime.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/underscore-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/backbone-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/rgbcolor.js"></script>
+<script type="text/javascript" src="../scripts/vendor/canvg.js"></script>
+<script type="text/javascript" src="../scripts/vendor/qunit.js"></script>
+<script type="text/javascript" src="../scripts/vendor/sinon-1.3.2.js"></script>
+<script type="text/javascript" src="../scripts/vendor/sinon-qunit-1.0.0.js"></script>
+
+<script src="../scripts/templates.js"></script>
+<script src="../scripts/nocircleno/geom/point.js"></script>
+<script src="../scripts/nocircleno/geom/rectangle.js"></script>
+<script src="../scripts/nocircleno/geom/arc.js"></script>
+<script src="../scripts/nocircleno/utils/conversions.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/generator-circle.js"></script>
+<script src="../scripts/nocircleno/math/angles.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/faces.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/registration-point-location.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/andy-definition.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/andy-factory-settings.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/andy-factory.js"></script>
+<script src="../scripts/nocircleno/auto_andy_core/andy-view.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        var afs = new NoCircleNo.AndyFactorySettings();
+
+        NoCircleNo.andyFactory.setFactorySettings(afs);
+
+        var andyDef = NoCircleNo.andyFactory.makeDefinition(NoCircleNo.registrationPointLocation.OUTLINE_TOP_LEFT);
+        var andyView = new NoCircleNo.AndyView({model: andyDef});
+        $("#svg_canvas").append(andyView.render().el);
+        var svg = andyView.getAndySVG();
+
+        var c = document.getElementById('canvasId');
+        var ctx = c.getContext('2d');
+
+        canvg(c, svg);
+
+        $("#sample").html(svg);
+
+
+    });
+</script>
+</body>
+</html>

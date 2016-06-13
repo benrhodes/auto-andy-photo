@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Andy Canvas View Test</title>
+
+    <style type="text/css">
+        @import "../styles/main.css";
+    </style>
+
+</head>
+<body>
+
+<div id="canvas"></div>
+
+<script type="text/javascript" src="../scripts/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/handlebars.runtime.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/underscore-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/backbone-min.js"></script>
+<script type="text/javascript" src="../scripts/templates.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/point.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/rectangle.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/arc.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/utils/conversions.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/generator-circle.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/math/angles.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/faces.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/registration-point-location.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-definition.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-factory-settings.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-factory.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-view.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_photo/andy-canvas-view.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+        var andys = new NoCircleNo.Andys();
+
+        var canvasView = new NoCircleNo.AndyCanvasView({collection:andys});
+
+        $("#canvas").append(canvasView.render().el);
+
+        canvasView.setViewWidth(window.innerWidth - 200);
+        canvasView.setViewHeight(window.innerHeight);
+
+        canvasView.addAndy();
+
+        $(window).resize(function() {
+            canvasView.setViewWidth(window.innerWidth - 200);
+            canvasView.setViewHeight(window.innerHeight);
+        });
+
+    });
+</script>
+</body>
+</html>

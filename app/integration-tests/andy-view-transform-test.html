@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Andy View Transform Test</title>
+
+    <style type="text/css">
+        @import "../styles/main.css";
+
+        #canvas {
+            margin: 0;
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+<div id="canvas"></div>
+
+<script type="text/javascript" src="../scripts/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/handlebars.runtime.min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/underscore-min.js"></script>
+<script type="text/javascript" src="../scripts/vendor/backbone-min.js"></script>
+<script type="text/javascript" src="../scripts/templates.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/point.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/rectangle.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/geom/arc.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/utils/conversions.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/generator-circle.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/math/angles.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/faces.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/registration-point-location.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-definition.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-factory-settings.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-factory.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_core/andy-view.js"></script>
+<script type="text/javascript" src="../scripts/nocircleno/auto_andy_photo/andy-canvas-view.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+        var andys = new NoCircleNo.Andys();
+
+        var canvasView = new NoCircleNo.AndyCanvasView({collection:andys});
+
+        $("#canvas").append(canvasView.render().el);
+
+        canvasView.setViewWidth(window.innerWidth);
+        canvasView.setViewHeight(window.innerHeight);
+
+        canvasView.addAndy();
+
+        $(window).bind("keyup", function(e) {
+
+            var currentScale;
+            var newScale;
+            var currentRotation;
+            var newRotation;
+
+            // up key
+            if(e.originalEvent.keyCode === 38) {
+
+                _.each(andys.models, function(andyDef) {
+
+                    currentScale = andyDef.get("scale");
+                    newScale = currentScale + .1;
+
+                    // limit scale
+                    if(newScale < 0.1) {
+                        newScale = 0.1;
+                    } else if(newScale > 5) {
+                        newScale = 5;
+                    }
+
+                    var currentX = andyDef.get("x");
+                    var currentY = andyDef.get("y");
+
+                    var intrinsicWidth = andyDef.get("outlineBounds").get("width");
+                    var intrinsicHeight = andyDef.get("outlineBounds").get("height");
+
+                    var currentWidth = intrinsicWidth * currentScale;
+                    var currentHeight = intrinsicHeight * currentScale;
+                    var newWidth = intrinsicWidth * newScale;
+                    var newHeight = intrinsicHeight * newScale;
+
+                    var newX = currentX + ((currentWidth - newWidth) / 2);
+                    var newY = currentY + ((currentHeight - newHeight) / 2);
+
+                    console.log(" - [+] ------- ");
+                    console.log("intrinsicWidth: " + intrinsicWidth + ", intrinsicHeight: " + intrinsicHeight);
+                    console.log("currentScale: " + currentScale + " -- currentWidth: " + currentWidth + ", currentHeight: " + currentHeight);
+                    console.log("newScale: " + newScale + " -- newWidth: " + newWidth + ", newHeight: " + newHeight);
+                    console.log("currentX: " + currentX + ", currentY: " + currentY);
+                    console.log("newX: " + newX + ", newY: " + newY);
+                    console.log(" -------- ");
+
+                    //andyDef.set({"scale":newScale});
+                    andyDef.set({"x":newX, "y":newY, "scale":newScale});
+
+                });
+
+            // down key
+            } else if(e.originalEvent.keyCode === 40) {
+
+                _.each(andys.models, function(andyDef) {
+
+                    currentScale = andyDef.get("scale");
+                    newScale = currentScale - .1;
+
+                    // limit scale
+                    if(newScale < 0.1) {
+                        newScale = 0.1;
+                    } else if(newScale > 5) {
+                        newScale = 5;
+                    }
+
+                    var currentX = andyDef.get("x");
+                    var currentY = andyDef.get("y");
+
+                    var intrinsicWidth = andyDef.get("outlineBounds").get("width");
+                    var intrinsicHeight = andyDef.get("outlineBounds").get("height");
+
+                    var currentWidth = intrinsicWidth * currentScale;
+                    var currentHeight = intrinsicHeight * currentScale;
+                    var newWidth = intrinsicWidth * newScale;
+                    var newHeight = intrinsicHeight * newScale;
+
+                    var newX = currentX + ((currentWidth - newWidth) / 2);
+                    var newY = currentY + ((currentHeight - newHeight) / 2);
+
+                    console.log(" - [-] ------- ");
+                    console.log("intrinsicWidth: " + intrinsicWidth + ", intrinsicHeight: " + intrinsicHeight);
+                    console.log("currentScale: " + currentScale + " -- currentWidth: " + currentWidth + ", currentHeight: " + currentHeight);
+                    console.log("newScale: " + newScale + " -- newWidth: " + newWidth + ", newHeight: " + newHeight);
+                    console.log("currentX: " + currentX + ", currentY: " + currentY);
+                    console.log("newX: " + newX + ", newY: " + newY);
+                    console.log(" -------- ");
+
+                    //andyDef.set({"scale":newScale});
+                    andyDef.set({"x":newX, "y":newY, "scale":newScale});
+
+                });
+
+            // left key
+            } else if(e.originalEvent.keyCode === 37) {
+
+                _.each(andys.models, function(andyDef) {
+
+                    currentRotation = andyDef.get("rotation");
+                    newRotation = currentRotation - 10;
+
+                    // limit scale
+                    if(newRotation < 0) {
+                        newRotation = 359;
+                    } else if(newRotation > 360) {
+                        newRotation = 0;
+                    }
+
+                    andyDef.set({"rotation":newRotation});
+
+                });
+
+            } else if(e.originalEvent.keyCode === 39) {
+
+                _.each(andys.models, function(andyDef) {
+
+                    currentRotation = andyDef.get("rotation");
+                    newRotation = currentRotation + 10;
+
+                    // limit scale
+                    if(newRotation < 0) {
+                        newRotation = 359;
+                    } else if(newRotation > 360) {
+                        newRotation = 0;
+                    }
+
+                    andyDef.set({"rotation":newRotation});
+
+                });
+
+            }
+
+        });
+
+        $(window).resize(function() {
+            //canvasView.setViewWidth(window.innerWidth - 200);
+            //canvasView.setViewHeight(window.innerHeight);
+        });
+
+    });
+</script>
+</body>
+</html>
